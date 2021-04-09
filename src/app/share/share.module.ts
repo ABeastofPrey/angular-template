@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { PagesModule } from './pages/pages.module';
 import { ShareRoutingModule } from './share-routing.module';
+import { ComponentsModule } from './components/components.module';
 
 
 
@@ -10,7 +10,10 @@ import { ShareRoutingModule } from './share-routing.module';
   imports: [
     CommonModule,
     ShareRoutingModule,
-    // PagesModule
+    ComponentsModule,
+  ],
+  exports: [
+    ComponentsModule
   ]
 })
 export class ShareModule { }
