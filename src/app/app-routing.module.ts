@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PreloadModuleStrategyService } from './share/services/preload-module-strategy/preload-module-strategy.service';
+import { PreloadModuleStrategyService } from './share/services';
+import { AuthGuard } from './share/services';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
   }, {
     path: '',
     data: { preload: true },
+    canActivate: [AuthGuard],
     loadChildren: () => import('./core/home/home.module').then(m => m.HomeModule)
   }, {
     path: '**', redirectTo: 'pages', pathMatch: 'full'
