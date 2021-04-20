@@ -4,7 +4,7 @@ import { MD5 } from 'crypto-js';
 @Injectable({
   providedIn: 'root'
 })
-export class SignInServiceService {
+export class SignInService {
 
   constructor() { }
 

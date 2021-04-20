@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SignInServiceService } from '../../services/sign-in/sign-in-service.service';
+import { SignInService } from '../../services/sign-in/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +15,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private si: SignInServiceService
+    private si: SignInService
     ) { }
 
   ngOnInit(): void {
