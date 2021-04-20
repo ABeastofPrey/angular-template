@@ -1,1 +1,13 @@
-<p>sign-in works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name or Phone:
+    <input id="name" type="text" formControlName="nameOrPhone" required/>
+  </label>
+  <br />
+  <label for="password">Password:
+    <input id="password" type="password" formControlName="password" required>
+  </label>
+  <div>
+    <button type="reset">Cancel</button>
+    <button type="submit" [disabled]="!profileForm.valid">Sign in</button>
+  </div>
+</form>
