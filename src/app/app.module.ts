@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ShareModule } from './share/share.module';
 import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     CoreModule,
     ShareModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

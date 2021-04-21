@@ -9,7 +9,7 @@ import { SignInService } from '../../services/sign-in/sign-in.service';
 })
 export class SignInComponent implements OnInit {
   public profileForm: FormGroup = this.fb.group({
-    nameOrPhone: [''],
+    phone: [''],
     password: ['']
   });
 
