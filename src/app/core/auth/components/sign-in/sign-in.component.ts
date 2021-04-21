@@ -22,6 +22,9 @@ export class SignInComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.si.signIn(this.profileForm.value);
+    this.si.signIn(this.profileForm.value)
+    // .subscribe(success => {
+    //   console.log('Successfully sign in: ' + success);
+    // });
   }
 }
