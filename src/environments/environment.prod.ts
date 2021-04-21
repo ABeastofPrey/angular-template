@@ -1,5 +1,5 @@
-const { protocol, host, port } = location;
-const url = `${protocol}//${host}:${port}/`;
+const { protocol, hostname, port } = location;
+const url = `${protocol}//${hostname}:${port}/`;
 
 export const environment = {
   production: true,
