@@ -20,4 +20,8 @@ export class AuthServiceService {
   public clearToken(): void {
     localStorage.removeItem(tokenKey);
   }
+
+  public hasSignedIn(): boolean {
+    return this.getToken() !== '';
+  }
 }

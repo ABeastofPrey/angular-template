@@ -13,8 +13,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public post<T, D>(api: string, data: T): Observable<HttpResponse<D>> {
-    return this.http.post<HttpResponse<D>>(
+  public post<D, R>(api: string, data: D): Observable<HttpResponse<R>> {
+    return this.http.post<HttpResponse<R>>(
       url + 'api/' + api, data, { observe: 'body', responseType: 'json' }
     ).pipe(catchError(this.handleError));
   }
@@ -31,13 +31,6 @@ export class ApiService {
         `body was: ${error.error}`);
     }
     // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(error);
   }
 }
-
-// export interface HttpResponse<T> {
-//   data: T,
-//   messsage: string,
-//   status: number
-// }
