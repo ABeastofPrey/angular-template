@@ -3,7 +3,7 @@ import { MD5 } from 'crypto-js';
 import { User } from 'src/app/share/models';
 import { ApiService } from 'src/app/share/services';
 import { tap } from 'rxjs/operators';
-import { AuthServiceService } from '../auth/auth-service.service';
+import { AuthService } from '../auth/auth.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class SignInService {
 
   constructor(
     private api: ApiService,
-    private auth: AuthServiceService,
+    private auth: AuthService,
     private router: Router
   ) { }
 

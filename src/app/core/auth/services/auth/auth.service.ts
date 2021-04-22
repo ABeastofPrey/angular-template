@@ -5,7 +5,7 @@ const tokenKey = 'user_info_token';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   constructor() { }
 
