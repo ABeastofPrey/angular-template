@@ -17,10 +17,11 @@ import { httpInterceptorProviders } from './share/interceptors';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ShareModule,
+    // ShareModule,
     FormsModule,
     HttpClientModule
   ],
+  exports: [],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
