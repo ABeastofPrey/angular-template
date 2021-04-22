@@ -19,6 +19,8 @@ export class SignInComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.profileForm.controls['phone'].setValue('13585845432');
+    this.profileForm.controls['password'].setValue('123456');
   }
 
   public onSubmit(): void {
