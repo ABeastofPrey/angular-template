@@ -19,10 +19,9 @@ export class SignInService {
   ) { }
 
   public signIn({ phone, password }: { phone: string, password: string }): void {
-    const hash = MD5(password).toString();
-    const user = new User('13585845432', '123456');
-    this.api.post<User, { token: string }>('auth/login', user)
-      .pipe(
+    // const hash = MD5(password).toString();
+    const user = new User(phone, password);
+    this.api.post<User, { token: string }>('auth/login', user).pipe(
         tap(res => {
           res.body && this.auth.saveToken(res.body.token);
         })
