@@ -4,7 +4,7 @@ import {
   HttpRequest, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
 
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../message/message.service';
@@ -23,7 +23,7 @@ export class UploaderService {
   //   ...
   // }
 
-  upload(file: File) {
+  public upload(file: File): Observable<string> {
     if (!file) { return of<string>(); }
 
     // COULD HAVE WRITTEN:
@@ -50,7 +50,7 @@ export class UploaderService {
   }
 
   /** Return distinct message for sent, upload progress, & response events */
-  private getEventMessage(event: HttpEvent<any>, file: File) {
+  private getEventMessage(event: HttpEvent<any>, file: File): string {
     switch (event.type) {
       case HttpEventType.Sent:
         return `Uploading file "${file.name}" of size ${file.size}.`;
@@ -75,7 +75,7 @@ export class UploaderService {
    * When no `UploadInterceptor` and no server,
    * you'll end up here in the error handler.
    */
-  private handleError(file: File) {
+  private handleError(file: File): (error: HttpErrorResponse) => Observable<string> {
     const userMessage = `${file.name} upload failed.`;
 
     return (error: HttpErrorResponse) => {
@@ -93,7 +93,7 @@ export class UploaderService {
     };
   }
 
-  private showProgress(message: string) {
+  private showProgress(message: string): void {
     this.messenger.add(message);
   }
 }
