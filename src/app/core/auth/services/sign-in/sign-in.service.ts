@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 // import { MD5 } from 'crypto-js';
 import { User } from 'src/app/share/models';
 import { ApiService, UserService } from 'src/app/share/services';
-import { tap } from 'rxjs/operators';
+import { switchMap, tap, map as rxjsMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { isNil } from 'ramda';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,17 +31,21 @@ export class SignInService extends AuthService {
       super.saveToken(res.body.token);
     };
 
-    const saveUserInfo = (res: HttpResponse<{ token: string }>): void => {
-      this.api.get<{ user: User }>('user/findByPhone', { phone }).subscribe(res => {
-        if (res.status !== 200) return;
-        const user = res.body?.user;
-        if (isNil(user)) return;
-        this.user.saveUser(user);
-      });
+    const saveUserInfo = (/*res: HttpResponse<{ token: string }>*/): Observable<User | null> => {
+      return this.api.get<{ user: User }>('user/findByPhone', { phone })
+      .pipe(rxjsMap(
+        res => {
+          if (res.status !== 200) return null;
+          const user = res.body?.user;
+          if (isNil(user)) return null;
+          this.user.saveUser(user);
+          return user;
+        }
+      ));
     };
 
     const observer = {
-      next: (res: HttpResponse<{ token: string }>) => {
+      next: (/*res: User | null*/) => {
         this.router.navigate(['/']);
       },
       error: (err: HttpErrorResponse) => {
@@ -50,7 +55,7 @@ export class SignInService extends AuthService {
 
     this.api.post<User, { token: string }>('auth/login', user)
       .pipe(tap(saveToken))
-      .pipe(tap(saveUserInfo))
+      .pipe(switchMap(saveUserInfo))
       .subscribe(observer);
   }
 }
