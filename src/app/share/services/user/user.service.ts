@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/services/auth/auth.service';
 import { User } from '../../models';
 
+const userKey = 'user_info';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,17 +28,17 @@ export class UserService {
   }
 
   public saveUser(user: User): void {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(userKey, JSON.stringify(user));
     this.userBSubject.next(user);
   }
 
   public removeUser(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem(userKey);
     this.userBSubject.next(null);
   }
 
   private getUserFromLocal(): User | null {
-    const userStr = localStorage.getItem('user');
+    const userStr = localStorage.getItem(userKey);
     return isNull(userStr) ? null : JSON.parse(userStr);
   }
 }
