@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -13,10 +13,16 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  public get<R>(api: string, params?: Params): Observable<HttpResponse<R>> {
+    const _url = url + 'api/' + api;
+    const _params = params ? Object.keys(params).reduce((acc: HttpParams, key) => acc.set(key, (params as Params)[key]), new HttpParams()) : undefined;
+    return this.http.get<HttpResponse<R>>(_url, { params: _params }).pipe(catchError(this.handleError));
+  }
+
   public post<D, R>(api: string, data: D): Observable<HttpResponse<R>> {
-    return this.http.post<HttpResponse<R>>(
-      url + 'api/' + api, data, { observe: 'body', responseType: 'json' }
-    ).pipe(
+    const _url = url + 'api/' + api;
+    const options = { observe: 'body' as const, responseType: 'json' as const };
+    return this.http.post<HttpResponse<R>>(_url, data, options).pipe(
       // retry(2),
       catchError(this.handleError)
     );
@@ -37,4 +43,8 @@ export class ApiService {
     // Return an observable with a user-facing error message.
     return throwError(error);
   }
+}
+
+interface Params {
+  [key: string]: string
 }

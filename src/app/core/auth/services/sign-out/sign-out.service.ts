@@ -5,12 +5,12 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SignOutService {
+export class SignOutService extends AuthService {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private router: Router) { super(); }
 
   public signOut(): void {
-    this.auth.clearToken();
+    super.clearToken();
     this.router.navigate(['/auth/sign-in']);
   }
 }
