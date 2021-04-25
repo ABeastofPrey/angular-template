@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './share/services';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'Angular-template works!';
 
-  constructor() { }
+  constructor(public user: UserService) { }
 
 }

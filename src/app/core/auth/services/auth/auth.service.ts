@@ -9,17 +9,13 @@ const tokenKey = 'user_info_token';
 })
 export class AuthService {
 
-  public user!: User;
-
-  protected userBSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-
   constructor() { }
 
   protected saveToken(token: string): void {
     localStorage.setItem(tokenKey, token);
   }
 
-  protected clearToken(): void {
+  protected removeToken(): void {
     localStorage.removeItem(tokenKey);
   }
 
@@ -27,7 +23,7 @@ export class AuthService {
     return localStorage.getItem(tokenKey) !== null ? localStorage.getItem(tokenKey) as string : '';
   }
 
-  public hasSignedIn(): boolean {
-    return this.getToken() !== '';
+  public hasToken(): boolean {
+    return this.getToken().trim() === '' ? false : true;
   }
 }

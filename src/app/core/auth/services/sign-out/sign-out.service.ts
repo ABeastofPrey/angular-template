@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/share/services';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -7,10 +8,11 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SignOutService extends AuthService {
 
-  constructor(private router: Router) { super(); }
+  constructor(private router: Router, private user: UserService) { super(); }
 
   public signOut(): void {
-    super.clearToken();
+    super.removeToken();
+    this.user.removeUser();
     this.router.navigate(['/auth/sign-in']);
   }
 }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { MD5 } from 'crypto-js';
+// import { MD5 } from 'crypto-js';
 import { User } from 'src/app/share/models';
-import { ApiService } from 'src/app/share/services';
-import { switchMap, tap } from 'rxjs/operators';
+import { ApiService, UserService } from 'src/app/share/services';
+import { tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { isNil } from 'ramda';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,8 @@ export class SignInService extends AuthService {
 
   constructor(
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    private user: UserService
   ) {
     super();
   }
@@ -31,7 +32,10 @@ export class SignInService extends AuthService {
 
     const saveUserInfo = (res: HttpResponse<{ token: string }>): void => {
       this.api.get<{ user: User }>('user/findByPhone', { phone }).subscribe(res => {
-        console.log(res.body?.user);
+        if (res.status !== 200) return;
+        const user = res.body?.user;
+        if (isNil(user)) return;
+        this.user.saveUser(user);
       });
     };
 
