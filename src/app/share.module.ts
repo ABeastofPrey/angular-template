@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShareRoutingModule } from './share-routing.module';
-import { ComponentsModule } from './components/components.module';
+import { ComponentsModule } from './_components/components.module';
 
 
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { MD5 } from 'crypto-js';
-import { User } from 'src/app/share/models';
-import { ApiService, UserService } from 'src/app/share/services';
+import { User } from 'src/app/_models';
+import { ApiService, UserService } from 'src/app/_services';
 import { switchMap, tap, map as rxjsMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';

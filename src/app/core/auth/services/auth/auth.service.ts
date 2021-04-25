@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/share/models';
+import { User } from 'src/app/_models';
 
 const tokenKey = 'user_info_token';
 
