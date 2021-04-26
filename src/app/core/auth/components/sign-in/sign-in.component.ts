@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignInService } from '../../services/sign-in/sign-in.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { SignInService } from '../../services/sign-in/sign-in.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  public err!: string;
+
   public profileForm: FormGroup = this.fb.group({
     phone: [''],
     password: ['']
@@ -15,7 +19,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private si: SignInService
+    private si: SignInService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -24,9 +29,16 @@ export class SignInComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.si.signIn(this.profileForm.value)
-    // .subscribe(success => {
-    //   console.log('Successfully sign in: ' + success);
-    // });
+    this.err = '';
+    const observer = {
+      next: (/*res: User | null*/) => {
+        this.router.navigate(['/']);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.dir(err);
+        this.err = 'Incorrect User name or Password!';
+      }
+    };
+    this.si.signIn(this.profileForm.value).subscribe(observer);
   }
 }

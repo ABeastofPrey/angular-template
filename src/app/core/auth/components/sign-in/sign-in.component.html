@@ -11,4 +11,7 @@
     <button type="reset">Clear</button>
     <button type="submit" [disabled]="!profileForm.valid">Sign in</button>
   </label>
+  <label *ngIf="err">
+    <p style="color: red;">{{err}}</p>
+  </label>
 </form>
