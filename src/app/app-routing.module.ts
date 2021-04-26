@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: 'auth',
     data: { preload: true },
-    loadChildren: () => import('./core-modules/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./core-features/auth/auth.module').then(m => m.AuthModule)
   }, {
     path: '',
     data: { preload: true },
     canActivate: [AuthGuard],
-    loadChildren: () => import('./core-modules/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./core-features/home/home.module').then(m => m.HomeModule)
   }, {
     path: '**', redirectTo: 'pages', pathMatch: 'full'
   }

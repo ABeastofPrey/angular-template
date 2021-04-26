@@ -7,7 +7,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { SignOutService } from 'src/app/core-modules/auth/services/sign-out/sign-out.service';
+import { SignOutService } from 'src/app/core-features/auth/services/sign-out/sign-out.service';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
