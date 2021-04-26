@@ -1,13 +1,14 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <label for="phone">Name or Phone:
+  <label for="phone">
+    <span>Name or Phone:</span>
     <input id="phone" type="text" formControlName="phone" required/>
   </label>
-  <br />
-  <label for="password">Password:
+  <label for="password">
+    <span>Password:</span>
     <input id="password" type="password" formControlName="password" required>
   </label>
-  <div>
+  <label>
     <button type="reset">Clear</button>
     <button type="submit" [disabled]="!profileForm.valid">Sign in</button>
-  </div>
+  </label>
 </form>
