@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { isNull } from 'ramda-adjunct';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from 'src/app/core-features/auth/services/auth/auth.service';
-import { User } from '../../_share-models';
+import { AuthService } from '@app/core-features/auth/services/auth/auth.service';
+import { User } from '@app/_share-models';
 
 const userKey = 'user_info';
 
