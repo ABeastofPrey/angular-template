@@ -74,6 +74,9 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "./tsconfig-es5.app.json"
             }
           }
         },
@@ -87,6 +90,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-template:build:production"
+            },
+            "es5": {
+              "browserTarget": "angular-template:build:es5"
             }
           }
         },

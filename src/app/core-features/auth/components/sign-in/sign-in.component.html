@@ -1,15 +1,15 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <label for="phone">
     <span>Name or Phone:</span>
-    <input id="phone" type="text" formControlName="phone" required/>
+    <input id="phone" type="text" nz-input formControlName="phone" required/>
   </label>
   <label for="password">
     <span>Password:</span>
-    <input id="password" type="password" formControlName="password" required>
+    <input id="password" type="password" nz-input formControlName="password" required>
   </label>
   <label>
-    <button type="reset">Clear</button>
-    <button type="submit" [disabled]="!profileForm.valid">Sign in</button>
+    <button type="reset" nz-button>Clear</button>
+    <button type="submit" nz-button [disabled]="!profileForm.valid">Sign in</button>
   </label>
   <label *ngIf="err">
     <p style="color: red;">{{err}}</p>
