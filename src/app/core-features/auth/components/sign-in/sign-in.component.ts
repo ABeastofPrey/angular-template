@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignInService } from '../../services/sign-in/sign-in.service';
 
@@ -13,8 +13,9 @@ export class SignInComponent implements OnInit {
   public err!: string;
 
   public profileForm: FormGroup = this.fb.group({
-    phone: [''],
-    password: ['']
+    phone: [null, [Validators.required]],
+    password: [null, [Validators.required]],
+    remember: [false]
   });
 
   constructor(
@@ -29,6 +30,10 @@ export class SignInComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    // for (const i in this.profileForm.controls) {
+    //   this.profileForm.controls[i].markAsDirty();
+    //   this.profileForm.controls[i].updateValueAndValidity();
+    // }
     this.err = '';
     const observer = {
       next: (/*res: User | null*/) => {

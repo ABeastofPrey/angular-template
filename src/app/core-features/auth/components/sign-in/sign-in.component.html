@@ -1,4 +1,4 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <label for="phone">
     <span>Name or Phone:</span>
     <input id="phone" type="text" nz-input formControlName="phone" required/>
@@ -14,4 +14,49 @@
   <label *ngIf="err">
     <p style="color: red;">{{err}}</p>
   </label>
+</form> -->
+
+
+<form nz-form [formGroup]="profileForm" class="login-form" (ngSubmit)="onSubmit()">
+  <!-- phome filed -->
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Phone">
+      <nz-input-group nzPrefixIcon="phone">
+        <input type="text" nz-input formControlName="phone" placeholder="Phone" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- password filed -->
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Password" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- remember and forgot password -->
+  <div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <label nz-checkbox formControlName="remember">
+        <span>Remember me</span>
+      </label>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-forgot">Forgot password</a>
+    </div>
+  </div>
+  <!-- register filed -->
+  <div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
+        [disabled]="!profileForm.valid">Sign in</button>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <span class="login-form-register">Or <a>Sign up now! </a></span>
+    </div>
+  </div>
+
+  <div *ngIf="err">
+    <p style="color: red;">{{err}}</p>
+  </div>
 </form>
