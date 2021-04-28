@@ -7,8 +7,8 @@
     </button>
     <ul nz-menu nzTheme="dark" nzMode="horizontal">
       <li nz-menu-item>Home</li>
-      <li nz-menu-item>User</li>
-      <li nz-menu-item>Me</li>
+      <li nz-menu-item [routerLink]="['/user-dashboard']">User</li>
+      <li nz-menu-item [routerLink]="['/profile']">Me</li>
     </ul>
   </nz-header>
   <!-- content -->
