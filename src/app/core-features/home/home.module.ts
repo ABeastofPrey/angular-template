@@ -14,6 +14,7 @@ import { ComponentsModule } from '@app/_share-components/components.module';
     CommonModule,
     HomeRoutingModule,
     ComponentsModule
-  ]
+  ],
+  exports: [ ]
 })
 export class HomeModule { }

@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     data: { preload: true },
     canActivate: [AuthGuard],
-    loadChildren: () => import('./core-features/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./core-features/core.module').then(m => m.CoreModule)
   }, {
     path: '**', redirectTo: 'pages', pathMatch: 'full'
   }
