@@ -14,6 +14,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./core-features/core.module').then(m => m.CoreModule)
   }, {
+    path: 'pages',
+    data: { preload: true },
+    loadChildren: () => import('./_share-pages/pages.module').then(m => m.PagesModule)
+  }, {
     path: '**', redirectTo: 'pages', pathMatch: 'full'
   }
 ];
