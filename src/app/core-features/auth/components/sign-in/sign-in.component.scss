@@ -1,22 +1,9 @@
-// form {
-//   display: flex;
-//   flex-direction: column;
-//   label {
-//     display: flex;
-//     flex-direction: row;
-//     margin: 0 0 5px 0;
-//     span {
-//       width: 120px;
-//     }
-//     button:nth-child(1) {
-//       margin: 0 5px 0 120px;
-//     }
-//   }
-// }
-
 .login-form {
   margin: auto;
-  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   max-width: 300px;
   &-margin {
     margin-bottom: 16px;
