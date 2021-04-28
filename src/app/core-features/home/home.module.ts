@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home.component';
 import { ComponentsModule } from '@app/_share-components/components.module';
+import { NzModule } from '@app/_share-3rd-modules';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ComponentsModule } from '@app/_share-components/components.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NzModule
   ],
   exports: [ ]
 })

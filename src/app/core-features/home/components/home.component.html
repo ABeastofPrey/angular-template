@@ -1,16 +1,22 @@
-<!-- <div>
-  <h2>home works!
-    <button (click)="signOut()">Sign out</button>
-  </h2>
-
-  <hr />
-
-  <app-uploader></app-uploader>
-  <app-messages></app-messages>
-
-  <hr />
-</div>
- -->
-
- <p>Home works</p>
- <button (click)="signOut()">Sign out</button>
+<nz-layout>
+  <!-- header -->
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item>Home</li>
+      <li nz-menu-item>User</li>
+      <li nz-menu-item>Me</li>
+    </ul>
+  </nz-header>
+  <!-- content -->
+  <nz-content>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb-item>List</nz-breadcrumb-item>
+      <nz-breadcrumb-item>APP</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="inner-content">Content</div>
+  </nz-content>
+  <!-- footer -->
+  <nz-footer>Angular Template Implemant by Someone</nz-footer>
+</nz-layout>
