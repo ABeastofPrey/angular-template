@@ -1,0 +1,27 @@
+<nz-layout>
+  <!-- header -->
+  <nz-header>
+    <div class="logo"></div>
+    <button class="sign-out-btn" nz-button nzType="default" nzShape="circle" (click)="signOut()">
+      <i nz-icon nzType="logout" nzTheme="outline"></i>
+    </button>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item>Home</li>
+      <li nz-menu-item [routerLink]="['/user-dashboard']">User</li>
+      <li nz-menu-item [routerLink]="['/profile']">Me</li>
+    </ul>
+  </nz-header>
+  <!-- content -->
+  <nz-content>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb-item>List</nz-breadcrumb-item>
+      <nz-breadcrumb-item>APP</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="inner-content">Content
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+  <!-- footer -->
+  <nz-footer>Angular Template Implemant by Someone</nz-footer>
+</nz-layout>
