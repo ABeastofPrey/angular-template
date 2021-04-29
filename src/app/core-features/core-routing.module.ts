@@ -11,7 +11,7 @@ const routes: Routes = [{
     path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   }, {
     path: 'user-dashboard',
-    loadChildren: () => import('./user-management/user-management.module').then(m => m.UserManagementModule)
+    loadChildren: () => import('./user-center/user-center.module').then(m => m.UserCenterModule)
   }, {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
