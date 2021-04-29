@@ -42,7 +42,7 @@ export class SignInService extends AuthService {
         ));
     };
 
-    return this.api.post<User, { token: string }>('auth/login', user)
+    return this.api.post<{}, { token: string }>('auth/login', {...user, account: user.phone })
       .pipe(tap(saveToken))
       .pipe(switchMap(saveUserInfo));
   }
