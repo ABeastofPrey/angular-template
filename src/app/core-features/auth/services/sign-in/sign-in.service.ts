@@ -22,7 +22,7 @@ export class SignInService extends AuthService {
 
   public signIn({ phone, password }: { phone: string, password: string }): Observable<User | null> {
     // const hash = MD5(password).toString();
-    const user = new User(-1, phone, password);
+    const user = new User(-1, phone, password, '');
 
     const saveToken = (res: HttpResponse<{ token: string }>) => {
       if (!res.body) return;
