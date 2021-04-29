@@ -3,13 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { UsersResolverService } from './services';
 
 const routes: Routes = [{
   path: '',
   component: UserDashboardComponent,
   children: [{
     path: '',
-    component: UserListComponent
+    component: UserListComponent,
+    resolve: {
+      users: UsersResolverService
+    }
   }, {
     path: 'user-info',
     component: UserInfoComponent

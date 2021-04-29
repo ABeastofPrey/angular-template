@@ -15,7 +15,7 @@ export class UserCenterService {
   public getUsers(): Observable<User[]> {
     const api = 'user/all';
     return this.api.get<{ users: User[] }>(api).pipe(
-      delay(1000),
+      delay(500),
       map((res) => isNil(res.body) ? [] : res.body.users)
     );
   }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '@app/_share-models';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { UserCenterService } from '../../services';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-list',
@@ -12,17 +11,12 @@ import { UserCenterService } from '../../services';
 })
 export class UserListComponent implements OnInit {
   public users$!: Observable<User[]>;
-  public selectedId!: number;
+  public selectedId: number = 1;
 
-  constructor(private service: UserCenterService, private activatedRoute: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.users$ = this.activatedRoute.paramMap.pipe(
-      switchMap(params => {
-        this.selectedId = +(params.get('id') as string) + 1;
-        return this.service.getUsers();
-      })
-    )
+    this.users$ = this.route.data.pipe(map(data => data.users));
   }
 
   public select(id: number): void {
