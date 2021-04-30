@@ -11,7 +11,7 @@ const routes: Routes = [
   }, {
     path: '',
     data: { preload: true },
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () => import('./core-features/core.module').then(m => m.CoreModule)
   }, {
     path: 'pages',
