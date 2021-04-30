@@ -13,10 +13,11 @@ const routes: Routes = [{
     component: UserListComponent,
     resolve: {
       users: UsersResolverService
-    }
-  }, {
-    path: 'user-info',
-    component: UserInfoComponent
+    },
+    children: [{
+      path: ':id',
+      component: UserInfoComponent
+    }]
   }]
 }];
 

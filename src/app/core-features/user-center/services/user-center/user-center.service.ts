@@ -19,4 +19,11 @@ export class UserCenterService {
       map((res) => isNil(res.body) ? [] : res.body.users)
     );
   }
+
+  public getUserById(id: number): Observable<User | null> {
+    return this.api.get<{ user: User }>('user/findById', { id: id.toString() }).pipe(
+      delay(200),
+      map(res => isNil(res.body) ? null : res.body.user)
+    );
+  }
 }
