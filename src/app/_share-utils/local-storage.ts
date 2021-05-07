@@ -1,5 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { isUndefined } from 'ramda-adjunct';
 
 
 const fakeStorage: Storage = {
@@ -12,7 +11,11 @@ const fakeStorage: Storage = {
 };
 
 export function getLocalStorage(): Storage {
-  return isUndefined(window) ? fakeStorage : window.localStorage;
+  try {
+    return window.localStorage;
+  } catch (error) {
+    return fakeStorage;
+  }
 }
 
 export const LocalStorage = new InjectionToken<Storage>(
