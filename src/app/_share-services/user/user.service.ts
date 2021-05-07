@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { isNull } from 'ramda-adjunct';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '@app/core-features/auth/services/auth/auth.service';
 import { User } from '@app/_share-models';
+import { LocalStorage } from '@app/_share-utils';
 
 const userKey = 'user_info';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends AuthService {
 
   private userBSubject: BehaviorSubject<User | null>;
 
@@ -17,28 +18,29 @@ export class UserService {
     return this.userBSubject.value;
   }
 
-  constructor(private auth: AuthService) {
+  constructor(@Inject(LocalStorage) protected localStorage: Storage) {
+    super(localStorage);
     this.userBSubject = new BehaviorSubject<User | null>(this.getUserFromLocal());
   }
 
   public hasSignedIn(): boolean {
     const hasUser = isNull(this.user) ? false : true;
-    const hasToken = this.auth.hasToken();
+    const hasToken = this.hasToken();
     return hasToken && hasUser;
   }
 
   public saveUser(user: User): void {
-    localStorage.setItem(userKey, JSON.stringify(user));
+    this.setItem(userKey, JSON.stringify(user));
     this.userBSubject.next(user);
   }
 
   public removeUser(): void {
-    localStorage.removeItem(userKey);
+    this.removeItem(userKey);
     this.userBSubject.next(null);
   }
 
   private getUserFromLocal(): User | null {
-    const userStr = localStorage.getItem(userKey);
+    const userStr = this.getItem(userKey);
     return isNull(userStr) ? null : JSON.parse(userStr);
   }
 }

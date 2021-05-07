@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 // import { MD5 } from 'crypto-js';
 import { User } from '@app/_share-models';
 import { ApiService, UserService } from '@app/_share-services';
@@ -6,7 +6,8 @@ import { switchMap, tap, map as rxjsMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { HttpResponse } from '@angular/common/http';
 import { isNil } from 'ramda';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { LocalStorage } from '@app/_share-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,20 @@ export class SignInService extends AuthService {
 
   constructor(
     private api: ApiService,
-    private user: UserService
+    private user: UserService,
+    @Inject(LocalStorage) protected localStorage: Storage
   ) {
-    super();
+    super(localStorage);
   }
 
   public signIn({ phone, password }: { phone: string, password: string }): Observable<User | null> {
+
     // const hash = MD5(password).toString();
     const user = new User(-1, phone, password, '');
 
     const saveToken = (res: HttpResponse<{ token: string }>) => {
       if (!res.body) return;
-      super.saveToken(res.body.token);
+      this.saveToken(res.body.token);
     };
 
     const saveUserInfo = (/*res: HttpResponse<{ token: string }>*/): Observable<User | null> => {
