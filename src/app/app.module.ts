@@ -12,6 +12,8 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import { ANT_ICONS } from './_share-3rd-modules';
 
 registerLocaleData(en);
 
@@ -28,7 +30,11 @@ registerLocaleData(en);
     BrowserAnimationsModule
   ],
   exports: [],
-  providers: [httpInterceptorProviders, { provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    httpInterceptorProviders,
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_ICONS, useValue: ANT_ICONS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
