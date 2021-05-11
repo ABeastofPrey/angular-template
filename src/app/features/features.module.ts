@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CoreRoutingModule } from './core-routing.module';
+import { FeaturesRoutingModule } from './features-routing.module';
 import { MainComponent } from './main/main.component';
 import { NzModule } from '@app/_share-3rd-modules';
 
@@ -12,8 +12,8 @@ import { NzModule } from '@app/_share-3rd-modules';
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule,
+    FeaturesRoutingModule,
     NzModule
   ]
 })
-export class CoreModule { }
+export class FeaturesModule { }

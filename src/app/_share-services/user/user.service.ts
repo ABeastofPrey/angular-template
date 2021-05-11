@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { isNull } from 'ramda-adjunct';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from '@app/core-features/auth/services/auth/auth.service';
+import { AuthService } from '@app/features/auth/services/auth/auth.service';
 import { User } from '@app/_share-models';
 import { LocalStorage } from '@app/_share-utils';
 

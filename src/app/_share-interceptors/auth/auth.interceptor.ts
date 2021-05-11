@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '@app/core-features/auth/services/auth/auth.service';
+import { AuthService } from '@app/features/auth/services/auth/auth.service';
 import { LocalStorage } from '@app/_share-utils';
 
 @Injectable()

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core-features/core.module';
+import { FeaturesModule } from './features/features.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './_share-interceptors';
@@ -24,7 +24,7 @@ registerLocaleData(en);
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    CoreModule,
+    FeaturesModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule
