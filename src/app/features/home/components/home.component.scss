@@ -1,0 +1,14 @@
+.container {
+  --blue: #6495ed;
+  --white: #faf0e6;
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 15px;
+
+  button {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 5px;
+  }
+}
